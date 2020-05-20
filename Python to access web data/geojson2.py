@@ -1,19 +1,17 @@
-#Program uses google maps api to parse data 
-#Location is "Ann Arbor, MI"
+#Program uses geolocation api similar to google maps api 
+#Unlike googlemaps api this has no daily limit on the number of times it can be used
+#The api is used to parse data from the json URL and obtain place_id of a location 
+#The location specified in assignment is "The Jerusalem collage of engineering"
 import urllib.request, urllib.parse, urllib.error
 import json
 import ssl
 
 api_key = False
-# If you have a Google Places API key, enter it here
-# api_key = 'AIzaSy___IDByT70'
-# https://developers.google.com/maps/documentation/geocoding/intro
-
 if api_key is False:
     api_key = 42
     serviceurl = 'http://py4e-data.dr-chuck.net/json?'
 else :
-    serviceurl = 'https://maps.googleapis.com/maps/api/geocode/json?'
+    serviceurl = 'http://py4e-data.dr-chuck.net/json?'
 
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
@@ -46,8 +44,5 @@ while True:
 
     print(json.dumps(js, indent=4))
 
-    lat = js['results'][0]['geometry']['location']['lat']
-    lng = js['results'][0]['geometry']['location']['lng']
-    print('lat', lat, 'lng', lng)
-    location = js['results'][0]['formatted_address']
-    print(location)
+    placeid=js['results'][0]['place_id']
+    print(placeid)
