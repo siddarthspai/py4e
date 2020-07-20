@@ -1,4 +1,4 @@
-//Program to count number of emails in a database
+#Program to count number of emails in a database
 import sqlite3
 
 conn = sqlite3.connect('emaildb2.sqlite')
